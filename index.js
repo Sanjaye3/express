@@ -18,7 +18,7 @@ const movies = [{"id":"100","name":"Iron man 2","poster":"https://m.media-amazon
 // mongodb connection
 async function CreateConnection(){
   // const MONGO_URL = "mongodb://127.0.0.1";
-  // const MONGO_URL = "mongodb+srv://sanjaye:welcome123@cluster0.lhrsmu9.mongodb.net/?retryWrites=true&w=majority"
+  
 
   const client =  new MongoClient(process.env.MONGO_URL);
   await client.connect();
