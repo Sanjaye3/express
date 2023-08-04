@@ -33,7 +33,7 @@ app.use(express.json());
 
 
 app.get('/', function (req, res) {
-  res.send('Hello World')
+  res.send('Hello World');
 })
 
 
@@ -73,7 +73,7 @@ app.get('/movies', async function (req, res) {
 app.get('/movies/:id', async function (request, response) {
   const { id }  = request.params;
   
-  const movie = await client.db("movies").collection("movies").findOne({id : id})
+  const movie = await client.db("movies").collection("movies").findOne({id : id});
   
   movie ?  response.send(movie) : response.status(404).send({msg : "No Such Movie Found"});
 
@@ -99,6 +99,19 @@ app.delete('/movies/:id', async function (request, response) {
 
   // console.log(request.params);
 })
+
+app.put('/movies/:id', async function (request, response) {
+  const { id }  = request.params;
+  const updateData = request.body;
+  
+  const result = await client.db("movies").collection("movies").updateOne({id : id},{$set:updateData});
+  
+  response.send(result)
+ 
+
+  // console.log(request.params);
+})
+ 
 
 
 
