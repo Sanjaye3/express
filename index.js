@@ -7,6 +7,9 @@ import {MongoClient} from "mongodb";
 import dotenv from "dotenv";
 import {moviesRouter} from "./Routes/movies.js";
 
+import { usersRouter } from "./Routes/users.js";
+import { genPassword } from "./Routes/helper.js";
+
 dotenv.config();
 // console.log(process.env);
 
@@ -57,9 +60,19 @@ app.get('/', function (req, res) {
 // api with mongodb
 
 
- 
+// before using the routes have saved the file in material as(restapi.js) 
 app.use("/movies",moviesRouter);
+app.use("/users",usersRouter);
 // app.use("/songs",songsRouter)
+
+
+
+
+// genpassword
+
+
+
+// console.log(await genPassword("midhin"));
 
 app.listen(PORT,() => console.log(`listening on the ${PORT}`));     
 // app.listen(3000)

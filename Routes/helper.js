@@ -1,4 +1,5 @@
 import { client } from "../index.js";
+import bcrypt from "bcrypt";
 
 export async function updateMovie(id, updateData) {
     return await client.db("movies").collection("movies").updateOne({ id: id }, { $set: updateData });
@@ -15,3 +16,10 @@ export async function getMoviesById(id) {
 export async function getAllMovies(filter) {
     return await client.db("movies").collection("movies").find(filter).toArray();
 }
+
+export async function genPassword(pwd){
+    const NO_OF_ROUNDS = 10;
+    const salt = await bcrypt.genSalt(NO_OF_ROUNDS);
+    const hashedPassword = await bcrypt.hash(pwd,salt);
+    return hashedPassword;
+  }
